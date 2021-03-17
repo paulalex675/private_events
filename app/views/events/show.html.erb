@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<%= @event.host.name %><br>
+<%= @event.name %><br>
+<%= @event.description %><br>
+<%= @event.time %><br>
+<%= @event.date %><br>
+
+
+<% if current_user.id == @event.host.id %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+<% else %>
+  <%= render 'rsvp' %>
+<% end %>
+  <%= link_to 'Back', events_path %>

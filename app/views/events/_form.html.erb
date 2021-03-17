@@ -1,0 +1,41 @@
+
+<%= simple_form_for(@event) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <ul>
+    <% @event.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+
+  <div class="field">
+    <div class="control">
+    <%= f.input :name, label: "Event name", 
+                input_html: { class: "input[type=text] "}, 
+                wrapper: false, 
+                label_html: {class: "label"}, 
+                placeholder: "The name of your Event...", 
+                autofocus: true %>
+  </div>
+  <div class="control">
+    <%= f.input :description, 
+                label: "Event details", 
+                input_html: { class: "textarea "}, 
+                wrapper: false, label_html: {class: "label"}, 
+                placeholder: "Tell us about your event...", 
+                autofocus: true %>
+  </div>
+  <div class="control">
+    <%= f.input :time, 
+                label: "Event time", 
+                input_html: { class: "time select"} %>
+  </div>
+  <div class="control">
+    <%= f.input :date, 
+                label: "Event date", 
+                input_html: { class: "date select"} %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
