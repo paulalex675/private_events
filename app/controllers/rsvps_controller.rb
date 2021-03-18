@@ -1,5 +1,6 @@
 class RsvpsController < ApplicationController
   before_action :set_rsvp, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /rsvps or /rsvps.json
   def index
@@ -21,6 +22,7 @@ class RsvpsController < ApplicationController
 
   # POST /rsvps or /rsvps.json
   def create
+    
     @rsvp = Rsvp.new(rsvp_params)
 
     respond_to do |format|

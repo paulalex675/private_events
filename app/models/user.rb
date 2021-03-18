@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :events, inverse_of: :host
   has_many :rsvps
-  has_many :attended_events, :through => :rsvps, source: :event
+  has_many :attended_events, through: :rsvps, source: :event
 end

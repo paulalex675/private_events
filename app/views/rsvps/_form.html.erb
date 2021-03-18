@@ -1,12 +1,15 @@
 
-<%= simple_form_for(@rsvp) do |f| %>
+<%= simple_form_for [@event, Rsvp.create] do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-  </div>
-
+  <ul>
+    <% @rsvp.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+

@@ -5,10 +5,18 @@
 <%= @event.time %><br>
 <%= @event.date %><br>
 
+<div>
+  <% @event_attendees = [] %>
+  <% @event.rsvps.each do |rsvp| %>
+    <% @event_attendees << rsvp.attendee %>
+    <p><%= rsvp.attendee.name %> is going to this event</p>
+  <% end %>
+</div>
 
 <% if current_user.id == @event.host.id %>
   <%= link_to 'Edit', edit_event_path(@event) %>
 <% else %>
   <%= render 'rsvp' %>
+   
 <% end %>
   <%= link_to 'Back', events_path %>
