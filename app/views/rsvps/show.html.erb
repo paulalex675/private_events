@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_rsvp_path(@rsvp) %> |
+<%= @rsvp.event.name %>
 <%= link_to 'Back', rsvps_path %>
+<%= link_to "Cancel my RSVP", 
+    rsvp_path(@rsvp), 
+    data: { confirm: "Are you sure?" }, 
+    method: :delete,
+    class: "button is-primary media-right is-pulled-right" %>
+

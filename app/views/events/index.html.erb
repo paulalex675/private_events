@@ -9,6 +9,13 @@
     </p>
   <% end %>
 </div>
+<div>
+  <% if user_signed_in? %>
+    <%= render 'my_events' %>
+    <%= link_to 'New Event', new_event_path %>
+  <% end %>
+</div>
+<br>
 <table>
   <thead>
     <tr>
@@ -19,23 +26,12 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <% if user_signed_in? %>
           <td><%= link_to 'Show', event %></td>
           <td><%= event.host.name %></td><br>
           <td><%= event.name %></td><br>
           <td><%= event.description %></td><br>
-          <% if user_signed_in? && event.host == current_user %>
-            <td><%= link_to 'Edit', edit_event_path(event) %></td>
-            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-<% if user_signed_in? %>
-  <%= render 'my_events' %>
-  <%= link_to 'New Event', new_event_path %>
-<% end %>

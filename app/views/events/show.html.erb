@@ -6,17 +6,16 @@
 <%= @event.date %><br>
 
 <div>
-  <% @event_attendees = [] %>
   <% @event.rsvps.each do |rsvp| %>
-    <% @event_attendees << rsvp.attendee %>
-    <p><%= rsvp.attendee.name %> is going to this event</p>
+    <% if rsvp.attendee.name == current_user.name %>
+      <p>You are going to this Event</p>
+    <% else %>
+      <p><%= rsvp.attendee.name %> is going to this event</p>
+    <% end %>
   <% end %>
 </div>
 
 <% if current_user.id == @event.host.id %>
-  <%= link_to 'Edit', edit_event_path(@event) %>
-<% else %>
-  <%= render 'rsvp' %>
-   
+  <%= link_to 'Edit', edit_event_path(@event) %>   
 <% end %>
   <%= link_to 'Back', events_path %>
