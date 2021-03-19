@@ -6,13 +6,22 @@
 <%= @event.date %><br>
 
 <div>
+  
   <% @event.rsvps.each do |rsvp| %>
-    <% if rsvp.attendee.name == current_user.name %>
-      <p>You are going to this Event</p>
+    <% if rsvp.attendee == current_user %>
+      <p>You are going to this event</p>
     <% else %>
       <p><%= rsvp.attendee.name %> is going to this event</p>
     <% end %>
   <% end %>
+</div>
+
+<div>
+  <% if (@event.rsvps.map { |user| user.user_id } ).include?(current_user.id) %>
+    <%= link_to 'Review my Rsvps', rsvps_path %>
+  <% else %> 
+    <%= render 'rsvp' %>
+  <% end %> 
 </div>
 
 <% if current_user.id == @event.host.id %>

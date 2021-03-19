@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <%= @rsvp.event.name %>
-<%= link_to 'Back', rsvps_path %>
+<%= @rsvp.event.date %>
+<%= link_to 'Back', events_path(@event) %>
 <%= link_to "Cancel my RSVP", 
     rsvp_path(@rsvp), 
     data: { confirm: "Are you sure?" }, 
